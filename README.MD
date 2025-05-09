@@ -56,3 +56,63 @@ Este sistema tiene como finalidad **optimizar el almacenamiento, apilamiento y t
 ```bash
 git clone https://github.com/tuusuario/gestion-cacao.git
 cd gestion-cacao
+-----------------------------------------------------------------------------------------------
+
+# 🌱 Cacao Storage and Distribution Management System 🍫
+
+## 🎯 Project Objective
+
+This system aims to **optimize the storage, stacking, and transportation of cacao** in a production farm. Through efficient control of sacks, stacks, and loads, it streamlines the shipping process and improves traceability of production.
+
+---
+
+## 🏗️ Main Features
+
+### 📦 Storage and Stacking
+- Manual input of **cacao weight (kg)** per sack.
+- Organization of cacao into **stacked blocks** for easier handling and transport.
+
+### 🧮 Stack Control
+- Automatic tracking of the **total cacao in each stack**.
+- **Real-time monitoring** of the inventory stored in the warehouse.
+
+### 🚛 Unloading and Transportation
+- Report generation with:
+  - 🏋️‍♂️ Weight per sack
+  - 📦 Number of sacks ready for transport
+- Display of total cacao ready to be loaded onto trucks.
+
+---
+
+## 🖥️ Technologies Used
+
+### 🎨 Frontend
+- **React + JavaScript**
+- Features:
+  - Form to input cacao per sack
+  - Visualization of stacks and inventory
+  - Report of cacao ready for transport
+
+### 🧠 Backend
+- **Node.js (Express)**
+- Features:
+  - REST API for managing sacks, stacks, and reports
+  - Calculation of total cacao and number of sacks
+  - Generation of stacking and transportation reports
+
+---
+
+## 🧠 Calculation Algorithm
+
+- Calculates the **number of sacks needed** based on weight per sack.
+- Tracks cacao from **stacking to distribution**.
+- Ensures **traceability and efficiency** with automatic reports.
+
+---
+
+## ⚙️ Installation & Execution
+
+### 🔽 Clone the repository
+```bash
+git clone https://github.com/yourusername/cacao-management.git
+cd cacao-management
