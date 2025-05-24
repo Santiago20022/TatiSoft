@@ -17,3 +17,14 @@ exports.crearPila = (req, res) => {
     res.status(201).json({ message: '✅ Pila creada exitosamente', pilaId: insertId });
   });
 };
+
+exports.obtenerPilas = (req, res) => { 
+  Pila.getAll((err, pilas) => {
+    if (err) {
+      console.error('Error al obtener pilas:', err.message);
+      return res.status(500).json({ message: 'Error interno al obtener pilas' });
+    }
+
+    res.status(200).json({ pilas });
+  });
+};
