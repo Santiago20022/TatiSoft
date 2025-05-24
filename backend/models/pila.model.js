@@ -9,6 +9,11 @@ const Pila = {
       if (err) return callback(err);
       callback(null, result.insertId);
     });
+  },
+
+  getAll: (callback) => {
+    const query = 'SELECT * FROM pilas';
+    db.query(query, callback);
   }
 };
 

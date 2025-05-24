@@ -8,8 +8,8 @@ dotenv.config();
 require('./config/db');
 
 const bultoRoutes = require('./routes/bulto.routes');
-const pilaRoutes = require('./routes/pila.routes'); // 👈 NUEVO
-const reporteRoutes = require('./routes/reporte.routes'); // 👈 NUEVO
+const pilaRoutes = require('./routes/pila.routes');
+const reporteRoutes = require('./routes/reporte.routes');
 
 const app = express();
 
@@ -17,8 +17,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', bultoRoutes);
-app.use('/api', pilaRoutes); // 👈 NUEVO
-app.use('/api', reporteRoutes); // 👈 NUEVO
+app.use('/api', pilaRoutes);
+app.use('/api', reporteRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
