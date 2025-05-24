@@ -7,21 +7,19 @@ import LoadingSpinner from "./LoadingSpinner"
 import ErrorMessage from "./ErrorMessage"
 
 const TablaPilas = () => {
-  const [pilas, setPilas] = useState([])
   const [pilasConResumen, setPilasConResumen] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const fetchPilas = async () => {
+  const fetchPilasReales = async () => {
     try {
       setLoading(true)
       setError(null)
 
       const response = await pilasService.getPilas()
       const pilasData = response.pilas || []
-      setPilas(pilasData)
 
-      // Obtener resumen para cada pila
+      // Obtener datos reales para cada pila
       const pilasConDatos = await Promise.all(
         pilasData.map(async (pila) => {
           try {
@@ -55,15 +53,15 @@ const TablaPilas = () => {
   }
 
   useEffect(() => {
-    fetchPilas()
+    fetchPilasReales()
   }, [])
 
   if (loading) {
-    return <LoadingSpinner text="Cargando pilas..." />
+    return <LoadingSpinner text="Cargando datos reales de pilas..." />
   }
 
   if (error) {
-    return <ErrorMessage message={error} onRetry={fetchPilas} />
+    return <ErrorMessage message={error} onRetry={fetchPilasReales} />
   }
 
   return (
@@ -71,7 +69,7 @@ const TablaPilas = () => {
       <div className="px-6 py-4 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-gray-900 flex items-center">
           <span className="mr-2">📊</span>
-          Resumen de Pilas
+          Resumen de Pilas (Datos Reales)
         </h2>
       </div>
 

@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { pilasService } from "../services/pilasService"
+import { bultosService } from "../services/bultosService"
 import LoadingSpinner from "../components/LoadingSpinner"
 
 const Home = () => {
@@ -10,16 +12,59 @@ const Home = () => {
     totalBultos: 0,
     pesoTotal: 0,
   })
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Simulamos datos por ahora para que funcione
-    setStats({
-      totalPilas: 5,
-      totalBultos: 25,
-      pesoTotal: 1250.5,
-    })
+    fetchRealStats()
   }, [])
+
+  const fetchRealStats = async () => {
+    try {
+      setLoading(true)
+
+      // Obtener todas las pilas
+      const pilasResponse = await pilasService.getPilas()
+      const pilas = pilasResponse.pilas || []
+      const totalPilas = pilas.length
+
+      // Obtener bultos para cada pila y calcular totales reales
+      let totalBultos = 0
+      let pesoTotal = 0
+
+      for (const pila of pilas) {
+        try {
+          const bultosResponse = await bultosService.getBultosByPila(pila.id)
+          const bultos = bultosResponse.bultos || []
+
+          totalBultos += bultos.length
+
+          // Sumar el peso de todos los bultos
+          const pesoPila = bultos.reduce((sum, bulto) => {
+            return sum + Number.parseFloat(bulto.peso_kg || 0)
+          }, 0)
+
+          pesoTotal += pesoPila
+        } catch (error) {
+          console.log(`No se pudieron obtener bultos para pila ${pila.id}`)
+        }
+      }
+
+      setStats({
+        totalPilas,
+        totalBultos,
+        pesoTotal: pesoTotal.toFixed(1),
+      })
+    } catch (error) {
+      console.error("Error fetching real stats:", error)
+      setStats({
+        totalPilas: 0,
+        totalBultos: 0,
+        pesoTotal: "0.0",
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const StatCard = ({ title, value, unit, icon, color, description }) => (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
@@ -57,7 +102,7 @@ const Home = () => {
   )
 
   if (loading) {
-    return <LoadingSpinner text="Cargando estadísticas..." />
+    return <LoadingSpinner text="Cargando estadísticas reales..." />
   }
 
   return (
@@ -91,7 +136,7 @@ const Home = () => {
           value={stats.pesoTotal}
           unit="kg"
           icon="⚖️"
-          color="bg-yellow-100"
+          color="bg-cacao-100"
           description="Peso total de cacao almacenado"
         />
       </div>
@@ -119,12 +164,12 @@ const Home = () => {
 
       {/* Info Cards */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6">
-          <h3 className="text-lg font-semibold text-yellow-800 mb-3 flex items-center">
+        <div className="bg-gradient-to-r from-cacao-50 to-cacao-100 rounded-xl p-6">
+          <h3 className="text-lg font-semibold text-cacao-800 mb-3 flex items-center">
             <span className="mr-2">🎯</span>
             Objetivo del Sistema
           </h3>
-          <p className="text-yellow-700 text-sm leading-relaxed">
+          <p className="text-cacao-700 text-sm leading-relaxed">
             Optimizar el almacenamiento, apilamiento y transporte del cacao en la finca productora. A través de un
             control eficiente de bultos, pilas y cargas, facilitamos el proceso de envío y mejoramos la trazabilidad de
             la producción.
