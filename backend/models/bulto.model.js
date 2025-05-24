@@ -1,5 +1,5 @@
 // backend/models/bulto.model.js
-const db = require('../config/db'); // Esto es la conexión directa
+const db = require('../config/db');
 
 const Bulto = {
   create: (bulto, callback) => {
@@ -9,6 +9,11 @@ const Bulto = {
     `;
     const values = [bulto.nombre, bulto.peso_kg, bulto.descripcion, bulto.pila_id];
     db.query(query, values, callback);
+  },
+
+  getByPilaId: (pilaId, callback) => {
+    const query = 'SELECT * FROM bultos WHERE pila_id = ?';
+    db.query(query, [pilaId], callback);
   },
 };
 
