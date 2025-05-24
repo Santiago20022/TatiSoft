@@ -9,6 +9,7 @@ require('./config/db');
 
 const bultoRoutes = require('./routes/bulto.routes');
 const pilaRoutes = require('./routes/pila.routes'); // 👈 NUEVO
+const reporteRoutes = require('./routes/reporte.routes'); // 👈 NUEVO
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api', bultoRoutes);
 app.use('/api', pilaRoutes); // 👈 NUEVO
+app.use('/api', reporteRoutes); // 👈 NUEVO
 
 app.get('/', (req, res) => {
   res.send('API is running...');
