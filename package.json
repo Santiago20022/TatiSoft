@@ -1,0 +1,23 @@
+{
+  "name": "tatisoftproyect",
+  "version": "1.0.0",
+  "description": "Este sistema tiene como finalidad **optimizar el almacenamiento, apilamiento y transporte del cacao** en una finca productora. A través de un control eficiente de bultos, pilas y cargas, se facilita el proceso de envío y se mejora la trazabilidad de la producción.",
+  "main": "Pila.js",
+  "scripts": {
+  "start": "concurrently \"npm run start --prefix backend\" \"npm run start --prefix frontend\""
+},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santiago20022/TatiSoft.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santiago20022/TatiSoft/issues"
+  },
+  "homepage": "https://github.com/Santiago20022/TatiSoft#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
