@@ -8,15 +8,13 @@ const connection = mysql.createConnection({
   database: process.env.DB_NAME || 'tatisoftdb',
 });
 
-const connectDB = () => {
-  connection.connect((err) => {
-    if (err) {
-      console.error('❌ Error connecting to MySQL:', err.message);
-      process.exit(1);
-    }
-    console.log('✅ Connected to MySQL database');
-  });
-};
+connection.connect((err) => {
+  if (err) {
+    console.error('❌ Error connecting to MySQL:', err.message);
+    process.exit(1);
+  }
+  console.log('✅ Connected to MySQL database');
+});
 
 // ⚠️ Exportar SOLO la conexión aquí
 module.exports = connection;

@@ -5,18 +5,18 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-// Conexión a la base de datos (sin desestructurar porque connectDB ya no se exporta)
 require('./config/db');
 
 const bultoRoutes = require('./routes/bulto.routes');
+const pilaRoutes = require('./routes/pila.routes'); // 👈 NUEVO
 
 const app = express();
 
 app.use(cors());
-app.use(express.json()); // Parseo de solicitudes en JSON
+app.use(express.json());
 
-// Rutas 
 app.use('/api', bultoRoutes);
+app.use('/api', pilaRoutes); // 👈 NUEVO
 
 app.get('/', (req, res) => {
   res.send('API is running...');
