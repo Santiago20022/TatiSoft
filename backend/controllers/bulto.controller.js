@@ -20,3 +20,16 @@ exports.crearBulto = (req, res) => {
     });
   });
 };
+
+exports.obtenerBultosPorPila = (req, res) => {
+  const { pilaId } = req.params;
+
+  Bulto.getByPilaId(pilaId, (err, bultos) => {
+    if (err) {
+      console.error('❌ Error al obtener bultos por pila:', err.message);
+      return res.status(500).json({ message: 'Error al obtener bultos' });
+    }
+
+    res.status(200).json({ bultos });
+  });
+};
