@@ -1,16 +1,22 @@
+// backend/index.js
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
 dotenv.config();
 
-const connectDB = require('./config/db'); // ✅ correcto
+// Conexión a la base de datos (sin desestructurar porque connectDB ya no se exporta)
+require('./config/db');
+
+const bultoRoutes = require('./routes/bulto.routes');
 
 const app = express();
 
-connectDB(); // ✅ conexión aquí
-
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); // Parseo de solicitudes en JSON
+
+// Rutas 
+app.use('/api', bultoRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');
@@ -19,5 +25,5 @@ app.get('/', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

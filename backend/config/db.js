@@ -18,4 +18,5 @@ const connectDB = () => {
   });
 };
 
-module.exports = connectDB;
+// ⚠️ Exportar SOLO la conexión aquí
+module.exports = connection;
