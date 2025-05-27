@@ -10,13 +10,11 @@ const Dashboard = () => {
   })
 
   useEffect(() => {
-    // Aquí harás las llamadas a tu API
     fetchStats()
   }, [])
 
   const fetchStats = async () => {
     try {
-      // Simulando datos por ahora
       setStats({
         totalPilas: 12,
         totalBultos: 156,
