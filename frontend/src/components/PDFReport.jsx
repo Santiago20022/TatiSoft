@@ -166,11 +166,11 @@ const PDFDocument = ({ data, totales }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       {/* Watermark */}
-      <Text style={styles.watermark}>🍫 TatiSoft</Text>
+      <Text style={styles.watermark}> TatiSoft</Text>
 
       {/* Header mejorado */}
       <View style={styles.header}>
-        <Text style={styles.title}>🍫 TatiSoft - Reporte de Inventario</Text>
+        <Text style={styles.title}> TatiSoft - Reporte de Inventario</Text>
         <Text style={styles.subtitle}>
           Generado el{" "}
           {new Date().toLocaleDateString("es-ES", {
@@ -186,7 +186,7 @@ const PDFDocument = ({ data, totales }) => (
 
       {/* Resumen mejorado */}
       <View style={styles.summaryContainer}>
-        <Text style={styles.summaryTitle}>📊 RESUMEN EJECUTIVO</Text>
+        <Text style={styles.summaryTitle}> RESUMEN EJECUTIVO</Text>
         <View style={styles.summaryGrid}>
           <View style={styles.summaryCard}>
             <Text style={styles.summaryCardTitle}>TOTAL PILAS</Text>
@@ -205,7 +205,7 @@ const PDFDocument = ({ data, totales }) => (
 
       {/* Tabla mejorada */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>📦 DETALLE POR PILAS</Text>
+        <Text style={styles.sectionTitle}> DETALLE POR PILAS</Text>
 
         <View style={styles.table}>
           {/* Header de la tabla */}
@@ -246,7 +246,7 @@ const PDFDocument = ({ data, totales }) => (
                 <Text
                   style={[styles.tableCell, (pila.total_bultos || 0) > 0 ? styles.statusActive : styles.statusEmpty]}
                 >
-                  {(pila.total_bultos || 0) > 0 ? "✅ CON CARGA" : "⚪ VACÍA"}
+                  {(pila.total_bultos || 0) > 0 ? " CON CARGA" : " VACÍA"}
                 </Text>
               </View>
             </View>
@@ -254,9 +254,8 @@ const PDFDocument = ({ data, totales }) => (
         </View>
       </View>
 
-      {/* Footer mejorado */}
       <View style={styles.footer}>
-        <Text style={styles.footerTitle}>🍫 TatiSoft - Sistema de Gestión de Cacao</Text>
+        <Text style={styles.footerTitle}> TatiSoft - Sistema de Gestión de Cacao</Text>
         <Text style={styles.footerText}>Optimizando el almacenamiento y distribución de cacao | Finca Productora</Text>
         <Text style={styles.footerText}>
           Reporte generado automáticamente - {new Date().toISOString().split("T")[0]}
@@ -277,12 +276,12 @@ const PDFReport = ({ data, totales, fileName = "reporte-inventario" }) => {
       {({ blob, url, loading, error }) =>
         loading ? (
           <>
-            <span className="mr-2">⏳</span>
+            <span className="mr-2"></span>
             Generando PDF...
           </>
         ) : (
           <>
-            <span className="mr-2">📄</span>
+            <span className="mr-2"></span>
             Descargar PDF
           </>
         )
